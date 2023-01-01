@@ -1,0 +1,69 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".MainActivity">
+
+    <androidx.recyclerview.widget.RecyclerView
+        android:layout_width="match_parent"
+        android:id="@+id/rvData"
+        android:layout_height="match_parent"
+        android:layout_above="@id/rlMess"/>
+
+    <RelativeLayout
+        android:id="@+id/rlMess"
+        android:layout_marginBottom="16dp"
+        android:paddingHorizontal="16dp"
+        android:layout_alignParentBottom="true"
+        android:layout_width="match_parent"
+        android:layout_height="60dp">
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_centerInParent="true"
+            android:layout_toStartOf="@id/rlSend"
+            android:background="@drawable/sb_shape_dialog_rounded"
+            android:layout_centerVertical="true"
+            android:layout_height="55dp">
+
+            <EditText
+                android:id="@+id/etChat"
+                android:paddingHorizontal="16dp"
+                android:background="@null"
+                android:layout_width="match_parent"
+                android:layout_centerVertical="true"
+                android:layout_height="55dp" />
+
+        </RelativeLayout>
+
+        <RelativeLayout
+            android:id="@+id/rlSend"
+            android:layout_width="50dp"
+            android:layout_alignParentEnd="true"
+            android:layout_centerVertical="true"
+            android:layout_height="50dp">
+
+            <androidx.appcompat.widget.AppCompatImageView
+                android:layout_width="50dp"
+                android:layout_height="50dp"
+                android:id="@+id/ivSend"
+                tools:visibility="gone"
+                android:padding="10dp"
+                android:src="@drawable/ic_baseline_send_24"/>
+
+            <androidx.appcompat.widget.AppCompatImageView
+                android:layout_width="50dp"
+                android:layout_height="50dp"
+                android:id="@+id/ivNoSend"
+                android:padding="10dp"
+                android:src="@drawable/ic_baseline_send_24"
+                android:tint="#D6D6D6"/>
+        </RelativeLayout>
+
+
+
+    </RelativeLayout>
+
+</RelativeLayout>

@@ -28,7 +28,7 @@
             android:layout_centerVertical="true"
             android:layout_height="55dp">
 
-            <EditText
+            <com.example.mentionexample.MentionEditText
                 android:id="@+id/etChat"
                 android:paddingHorizontal="16dp"
                 android:background="@null"
@@ -65,5 +65,4 @@
 
 
     </RelativeLayout>
-
 </RelativeLayout>

@@ -36,23 +36,9 @@ public class MessageAdapter extends RecyclerView.Adapter<MessageAdapter.MessageV
         if (message == null) {
             return;
         }
-        Calendar calendar = Calendar.getInstance();
-        holder.tvCreateMessage.setText(convertDateToString(calendar.getTime(), "HH:mm dd/MM/yyyy"));
+        holder.tvCreateMessage.setText(message.getCreateMessage());
         holder.tvMessage.setText(message.getMessage());
-    }
 
-    public String convertDateToString(Date date, String format){
-        format = "HH:mm dd/MM/yyyy";
-        if (date == null){
-            return null;
-        }
-        Locale locale = Locale.getDefault();
-        SimpleDateFormat dateFormat = new SimpleDateFormat(format, locale);
-        return getDateTimeString(date, dateFormat);
-    }
-
-    private String getDateTimeString(Date date, SimpleDateFormat dateFormat) {
-        return dateFormat.format(date);
     }
 
     @Override

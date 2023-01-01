@@ -6,8 +6,9 @@ public class Message {
     private Spannable Message;
     private String CreateMessage;
 
-    public Message(Spannable strMessage) {
+    public Message(Spannable strMessage, String createMessage) {
         this.Message = strMessage;
+        this.CreateMessage = createMessage;
     }
 
     public Spannable getMessage() {

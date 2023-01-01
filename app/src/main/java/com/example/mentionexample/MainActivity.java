@@ -23,25 +23,27 @@ import android.widget.TextView;
 import com.linkedin.android.spyglass.suggestions.SuggestionsResult;
 import com.linkedin.android.spyglass.tokenization.QueryToken;
 import com.linkedin.android.spyglass.tokenization.interfaces.QueryTokenReceiver;
+import com.linkedin.android.spyglass.ui.MentionsEditText;
 import com.linkedin.android.spyglass.ui.RichEditorView;
 
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.Calendar;
 import java.util.Collections;
+import java.util.Date;
 import java.util.List;
+import java.util.Locale;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
 public class MainActivity extends AppCompatActivity {
 
     AppCompatImageView ivSend, ivNoSend;
-    EditText etChat;
+    MentionEditText etChat;
     RecyclerView rvData;
     MessageAdapter adapter;
     List<Message> listMessage;
-    String ttt;
-    String tvMention = "";
-    String mention = "";
     private static final String BUCKET = "cities-memory";
     private City.CityLoader cities;
     int start, end;
@@ -56,6 +58,7 @@ public class MainActivity extends AppCompatActivity {
 //        initEvent();
 
         initRvData();
+
 
     }
 
@@ -76,6 +79,17 @@ public class MainActivity extends AppCompatActivity {
 
     private void sendMessage() {
         String strMessage = etChat.getText().toString().trim();
+        List<String> mentionList = etChat.getMentionList(true); //get a list of mention string
+        etChat.setMentionTextColor(Color.RED); //optional, set highlight color of mention string
+        etChat.setPattern("","@[\\u4e00-\\u9fa5\\w\\-]+"); //optional, set regularExpression
+        etChat.setOnMentionInputListener(new MentionEditText.OnMentionInputListener() {
+            @Override
+            public void onMentionCharacterInput(String tag) {
+
+            }
+
+
+        });
         etChat.addTextChangedListener(new TextWatcher() {
             @Override
             public void beforeTextChanged(CharSequence charSequence, int i, int i1, int i2) {
@@ -113,15 +127,30 @@ public class MainActivity extends AppCompatActivity {
         });
         Spannable wordtoSpan = new SpannableString(strMessage);
         wordtoSpan.setSpan(new ForegroundColorSpan(Color.RED), start, end, Spannable.SPAN_EXCLUSIVE_EXCLUSIVE);
+        start = 0;
+        end = 0;
         if (TextUtils.isEmpty(strMessage)){
             return;
         }
-        listMessage.add(new Message(wordtoSpan));
+        listMessage.add(new Message(wordtoSpan, convertDateToString(Calendar.getInstance().getTime(), "HH:mm dd/MM/yyyy")));
         adapter.notifyDataSetChanged();
         rvData.scrollToPosition(listMessage.size() - 1);
         etChat.setText("");
     }
 
+    public String convertDateToString(Date date, String format){
+        format = "HH:mm dd/MM/yyyy";
+        if (date == null){
+            return null;
+        }
+        Locale locale = Locale.getDefault();
+        SimpleDateFormat dateFormat = new SimpleDateFormat(format, locale);
+        return getDateTimeString(date, dateFormat);
+    }
+
+    private String getDateTimeString(Date date, SimpleDateFormat dateFormat) {
+        return dateFormat.format(date);
+    }
 
     private void initEvent() {
 

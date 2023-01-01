@@ -39,6 +39,7 @@ public class MainActivity extends AppCompatActivity {
     RecyclerView rvData;
     MessageAdapter adapter;
     List<Message> listMessage;
+    String ttt;
     String tvMention = "";
     String mention = "";
     private static final String BUCKET = "cities-memory";

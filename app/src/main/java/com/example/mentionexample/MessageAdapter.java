@@ -47,7 +47,7 @@ public class MessageAdapter extends RecyclerView.Adapter<MessageAdapter.MessageV
     }
 
     public static class MessageViewHolder extends RecyclerView.ViewHolder {
-        private TextView tvMessage;
+        private AppCompatTextView tvMessage;
         private TextView tvCreateMessage;
         public MessageViewHolder(@NonNull View itemView) {
             super(itemView);

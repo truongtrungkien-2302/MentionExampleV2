@@ -44,8 +44,6 @@ public class MainActivity extends AppCompatActivity {
     RecyclerView rvData;
     MessageAdapter adapter;
     List<Message> listMessage;
-    private static final String BUCKET = "cities-memory";
-    private City.CityLoader cities;
     int start, end;
 
     @Override
